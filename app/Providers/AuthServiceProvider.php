@@ -25,6 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        \DB::listen(function($query) {
+            \Log::info($query->sql, $query->bindings);
+        });
     }
 }

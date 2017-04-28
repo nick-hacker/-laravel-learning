@@ -12,11 +12,12 @@
                     {{ $post->body }}
                 </div>
                 <div class="panel-footer">
-                    {{ $post->comments()->count() }} Comments
+                     Comments {{ $post->comments_count }}++
                 </div>
             </div>
             @endforeach
         </div>
     </div>
+    
 </div>
 @endsection
