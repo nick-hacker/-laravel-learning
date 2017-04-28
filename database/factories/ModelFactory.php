@@ -29,6 +29,18 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'body' => $faker->paragraph,
         'status' => $faker->numberBetween(-1, 2),
         'user_id' => function() {
+            return factory('App\User')->create()->id;
+        },
+    ];
+});
+
+$factory->define(App\Comment::class, function (Faker\Generator $faker) {
+    return [
+        'body' => $faker->paragraph,
+        'post_id' => function() {
+            return factory('App\Post')->create()->id;
+        },
+        'user_id' => function() {
         	return factory('App\User')->create()->id;
         },
     ];
