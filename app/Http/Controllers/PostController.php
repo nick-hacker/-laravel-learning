@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('author')->withCount('comments')->paginate(20);
+        $posts = Post::with('author')->withCount('comments')->get();
         return view('posts.index', compact('posts'));
     }
 
@@ -45,8 +45,9 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
+        $post = Post::with(['comments', 'comments.user'])->findOrFail($id);
         return view('posts.show', compact('post'));
     }
 
