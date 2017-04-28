@@ -11,6 +11,9 @@
                 <div class="panel-body">
                     {{ $post->body }}
                 </div>
+                <div class="panel-footer">
+                    {{ $post->comments()->count() }} Comments
+                </div>
             </div>
             @endforeach
         </div>

@@ -11,11 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*$this->call(AddressTableSeeder::class);
-        $this->call(DetailsTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(OrganizationsTableSeeder::class);
-        $this->call(PostsTableSeeder::class);
-        $this->call(CommentsTableSeeder::class);*/
+        DB::table('users')->delete();
+        DB::table('posts')->delete();
+        DB::table('comments')->delete();
+
+       $posts = factory('App\Post', 30)->create();
+
+       $posts->each(function($post) {
+            factory('App\Comment', 10)->create(['post_id' => $post->id]);
+       });
     }
 }

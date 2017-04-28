@@ -11,6 +11,19 @@
                     {{ $post->body }}
                 </div>
             </div>
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Comments</h3>
+                </div>
+                <div class="panel-body">
+                    @foreach($post->comments as $comment)
+                        <blockquote>
+                            {{ $comment->body }}
+                            <small><cite>{{ $comment->user->username }}</cite> {{ $comment->created_at->diffForHumans() }}</small>
+                        </blockquote>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>
